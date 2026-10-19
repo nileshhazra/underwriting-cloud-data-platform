@@ -1,8 +1,31 @@
 # Real-Time Underwriting Cloud Data Platform & Medallion Architecture
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue?style=for-the-badge&logo=vercel)](https://underwriting-cloud-data-platform.vercel.app)
+<p align="center">
+  <a href="https://underwriting-cloud-data-platform.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" /></a>
+  <img src="https://img.shields.io/badge/Architecture-Medallion%20(Bronze%20%7C%20Silver%20%7C%20Gold)-orange?style=for-the-badge" alt="Medallion Architecture" />
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT" />
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome" />
+</p>
 
-> 🌐 **Interactive Demo**: [https://underwriting-cloud-data-platform.vercel.app](https://underwriting-cloud-data-platform.vercel.app)
+<p align="center">
+  <img src="https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure" />
+  <img src="https://img.shields.io/badge/Microsoft_Fabric-0078D4?style=for-the-badge&logo=microsoft&logoColor=white" alt="Microsoft Fabric" />
+  <img src="https://img.shields.io/badge/Cosmos_DB-NoSQL-0089D6?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Cosmos DB" />
+  <img src="https://img.shields.io/badge/Service_Bus-FIFO_Queues-D83B01?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Service Bus" />
+  <img src="https://img.shields.io/badge/Azure_Functions-Serverless-0062AD?style=for-the-badge&logo=azurefunctions&logoColor=white" alt="Azure Functions" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white" alt="Apache Spark" />
+  <img src="https://img.shields.io/badge/Delta_Lake-00A4EF?style=for-the-badge&logo=delta&logoColor=white" alt="Delta Lake" />
+  <img src="https://img.shields.io/badge/Power_BI-Direct_Lake-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI" />
+</p>
+
+> 🌐 **Interactive Live Web Demo**: [https://underwriting-cloud-data-platform.vercel.app](https://underwriting-cloud-data-platform.vercel.app)
 
 An end-to-end, event-driven insurance underwriting data engineering platform. Built with **React**, **Node.js (Express)**, **Azure Cosmos DB**, **Azure Service Bus**, **Azure Functions**, **Microsoft Fabric OneLake**, **PySpark / Delta Lake**, and **Power BI (Direct Lake)**.
 
