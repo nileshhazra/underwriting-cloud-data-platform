@@ -1,0 +1,12 @@
+{
+  "name": "atomx-underwriter-pipeline",
+  "version": "1.0.0",
+  "description": "End-to-End Underwriting Data Pipeline: React, Node.js, Cosmos DB, Service Bus, Azure Functions, Fabric Lakehouse",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:backend": "npm --prefix backend run start",
+    "worker:fabric": "npm --prefix azure-function run worker:local"
+  }
+}
