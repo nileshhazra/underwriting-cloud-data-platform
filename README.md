@@ -31,11 +31,11 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 
 ---
 
-## 🏗️ Architecture & Data Pipeline Flow
+## Architecture & Data Pipeline Flow
 
 ![End-to-End Insurance Underwriting Cloud Architecture](docs/images/architecture-diagram.svg)
 
-### 🛣️ End-to-End Data Journey
+### End-to-End Data Journey
 
 | Stage  | Layer                    | Technology                | Data Format                       | Latency / Mode               |
 | :----: | :----------------------- | :------------------------ | :-------------------------------- | :--------------------------- |
@@ -44,14 +44,14 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 | **03** | **OLTP Storage**         | Azure Cosmos DB (NoSQL)   | JSON Documents                    | Serverless Single-Digit ms   |
 | **04** | **Message Broker**       | Azure Service Bus         | AMQP Events                       | FIFO Queue Streaming         |
 | **05** | **Streaming Consumer**   | Azure Function App        | OneLake ADLS Gen2 REST            | Event-Driven Serverless      |
-| **06** | 🥉 **Bronze Lakehouse**  | Microsoft Fabric OneLake  | Hierarchical JSON (`YYYY/MM/DD`)  | Raw Immutable Audit Store    |
-| **07** | 🥈 **Silver Layer**      | Apache Spark / Delta Lake | Parquet Delta (`silver_policies`) | Cleaned, Typed, Deduplicated |
-| **08** | 🥇 **Gold Layer**        | Apache Spark / Delta Lake | Aggregated Delta Parquet          | Dimensional Business Metrics |
-| **09** | 📊 **Executive BI**      | Power BI Direct Lake      | VertiPaq In-Memory                | Zero-Copy Sub-second Queries |
+| **06** | **Bronze Lakehouse**     | Microsoft Fabric OneLake  | Hierarchical JSON (`YYYY/MM/DD`)  | Raw Immutable Audit Store    |
+| **07** | **Silver Layer**         | Apache Spark / Delta Lake | Parquet Delta (`silver_policies`) | Cleaned, Typed, Deduplicated |
+| **08** | **Gold Layer**           | Apache Spark / Delta Lake | Aggregated Delta Parquet          | Dimensional Business Metrics |
+| **09** | **Executive BI**         | Power BI Direct Lake      | VertiPaq In-Memory                | Zero-Copy Sub-second Queries |
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 1. **Underwriter Portal (React + Vite)**:
    - Dynamic insurance risk score evaluator (1 - 100) with automatic risk tier classification (Low, Standard, High Hazard).
@@ -81,7 +81,7 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 .
@@ -121,7 +121,7 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 
@@ -184,7 +184,7 @@ npm run worker:fabric
 
 ---
 
-## 📊 Medallion PySpark Transformations
+## Medallion PySpark Transformations
 
 ### Bronze &rarr; Silver:
 
@@ -208,7 +208,7 @@ gold_industry_risk_exposure.write \
 
 ---
 
-## 🛡️ Cost & Budget Optimization
+## Cost & Budget Optimization
 
 This architecture was specifically designed for **near-zero cost development**:
 
@@ -220,7 +220,7 @@ This architecture was specifically designed for **near-zero cost development**:
 
 ---
 
-## 📚 Technical Documentation & Deep-Dives
+## Technical Documentation & Future Scope
 
 - **[Guide](docs/INTERVIEW_GUIDE.md)**: 30-second pitch, architectural trade-offs, service-by-service rationale, and scalability analysis.
 - **[Enterprise Evolution & Production Improvements](docs/PRODUCTION_IMPROVEMENTS.md)**: Deep-dive into solving the Dual-Write problem with Cosmos DB Change Feed, Zero-Trust Managed Identity, Spark Structured Streaming, and Data Quality Quarantine tables.
