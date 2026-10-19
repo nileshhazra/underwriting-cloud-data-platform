@@ -217,3 +217,10 @@ This architecture was specifically designed for **near-zero cost development**:
 - **Azure Functions**: Consumption plan (First 1,000,000 executions/month free).
 - **Microsoft Fabric**: Fabric 60-day Capacity Trial (\$0).
 - Total development cost: **< \$1.00 / month**.
+
+---
+
+## 📚 Technical Documentation & Deep-Dives
+
+- 🎙️ **[Technical Interview Defense Guide](docs/INTERVIEW_GUIDE.md)**: 30-second pitch, architectural trade-offs, service-by-service rationale, and scalability analysis.
+- 🚀 **[Enterprise Evolution & Production Improvements](docs/PRODUCTION_IMPROVEMENTS.md)**: Deep-dive into solving the Dual-Write problem with Cosmos DB Change Feed, Zero-Trust Managed Identity, Spark Structured Streaming, and Data Quality Quarantine tables.
