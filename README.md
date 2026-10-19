@@ -73,6 +73,12 @@ flowchart LR
 
 ---
 
+## 📊 Executive Dashboard Preview (Power BI Direct Lake)
+
+![Underwriting Portfolio & Risk Analytics Dashboard](docs/images/powerbi-dashboard.png)
+
+---
+
 ## 🌟 Key Features
 
 1. **Underwriter Portal (React + Vite)**:
