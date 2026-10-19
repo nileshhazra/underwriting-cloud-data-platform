@@ -11,24 +11,65 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 ## 🏗️ Architecture & Data Pipeline Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'darkMode': true, 'fontFamily': 'ui-sans-serif, system-ui, sans-serif', 'background': '#0b0f19', 'primaryColor': '#1e293b', 'primaryBorderColor': '#38bdf8', 'primaryTextColor': '#f8fafc', 'lineColor': '#38bdf8', 'secondaryColor': '#1e1b4b', 'tertiaryColor': '#0f172a'}}}%%
 flowchart LR
-    subgraph Operational ["1. Operational Tier"]
-        UI["React Underwriting Portal\n(Vite + Modern UI)"] -->|POST /api/policies| API["Node.js Express API\n(Port 5050)"]
-        API -->|OLTP Storage| COSMOS[("Azure Cosmos DB\nNoSQL Database")]
-        API -->|Publish Event| SB["Azure Service Bus\nQueue: policy-submissions"]
+    subgraph Operational [" ⚡ OPERATIONAL TIER "]
+        direction TB
+        UI["💻 <b>React Portal</b><br/><i>Underwriting Intake</i>"]:::frontend
+        API["⚙️ <b>Express API</b><br/><i>Validation & Routing</i>"]:::backend
+        COSMOS[("🗄️ <b>Azure Cosmos DB</b><br/><i>OLTP Document Store</i>")]:::cosmos
+        SB["📨 <b>Azure Service Bus</b><br/><i>Queue: policy-submissions</i>"]:::messaging
+        
+        UI -->|POST /api/policies| API
+        API -->|ACID Insert| COSMOS
+        API -->|Publish Event| SB
     end
 
-    subgraph Streaming ["2. Ingestion & Lakehouse Landing"]
-        SB -->|Trigger| FUNC["Azure Function / Ingestion Engine\n(Serverless Node.js)"]
-        FUNC -->|Date Partitioning| BRONZE[("Microsoft Fabric Bronze Lakehouse\nFiles/bronze/policies/year/month/day/*.json")]
+    subgraph Streaming [" 🌊 INGESTION ENGINE "]
+        direction TB
+        FUNC["⚡ <b>Azure Function</b><br/><i>Serverless Consumer</i>"]:::serverless
+        BRONZE[("🥉 <b>Bronze Lakehouse</b><br/><i>Files: year/month/day/*.json</i>")]:::bronze
+        
+        FUNC -->|OneLake ADLS Gen2| BRONZE
     end
 
-    subgraph Analytics ["3. Fabric Medallion Architecture & BI"]
-        BRONZE -->|PySpark Notebook 1| SILVER[("Silver Layer\nDelta Table: silver_policies")]
-        SILVER -->|PySpark Notebook 2| GOLD[("Gold Layer\nDelta Tables:\ngold_industry_risk_exposure\ngold_underwriter_performance")]
-        GOLD -->|Direct Lake Mode| PBI["Power BI Executive Dashboard\n(Real-time In-Memory Analytics)"]
+    subgraph Medallion [" 💎 FABRIC MEDALLION & BI "]
+        direction TB
+        SILVER[("🥈 <b>Silver Delta Table</b><br/><i>Cleaned, Flattened & Typed</i>")]:::silver
+        GOLD[("🥇 <b>Gold Delta Tables</b><br/><i>Industry & Underwriter KPIs</i>")]:::gold
+        PBI["📊 <b>Power BI Dashboard</b><br/><i>Direct Lake (Sub-second)</i>"]:::powerbi
+
+        SILVER -->|PySpark Aggregation| GOLD
+        GOLD -->|Direct Lake Semantic Model| PBI
     end
+
+    SB ==>|Real-time Trigger| FUNC
+    BRONZE ==>|PySpark Flattening| SILVER
+
+    classDef frontend fill:#082f49,stroke:#0284c7,stroke-width:2px,color:#e0f2fe;
+    classDef backend fill:#1e1b4b,stroke:#6366f1,stroke-width:2px,color:#e0e7ff;
+    classDef cosmos fill:#172554,stroke:#2563eb,stroke-width:2px,color:#dbeafe;
+    classDef messaging fill:#451a03,stroke:#d97706,stroke-width:2px,color:#fef3c7;
+    classDef serverless fill:#134e4a,stroke:#14b8a6,stroke-width:2px,color:#ccfbf1;
+    classDef bronze fill:#431407,stroke:#ea580c,stroke-width:2px,color:#ffedd5;
+    classDef silver fill:#1e293b,stroke:#94a3b8,stroke-width:2px,color:#f1f5f9;
+    classDef gold fill:#422006,stroke:#eab308,stroke-width:2px,color:#fef08a;
+    classDef powerbi fill:#3b1e08,stroke:#f59e0b,stroke-width:2px,color:#fffbeb;
 ```
+
+### 🛣️ End-to-End Data Journey
+
+| Stage | Layer | Technology | Data Format | Latency / Mode |
+| :---: | :--- | :--- | :--- | :--- |
+| **01** | **Intake & Evaluation** | React 19 + Vite | Form State | Client-Side Dynamic |
+| **02** | **API & Event Producer** | Node.js + Express | JSON Document | `< 50ms` REST API |
+| **03** | **OLTP Storage** | Azure Cosmos DB (NoSQL) | JSON Documents | Serverless Single-Digit ms |
+| **04** | **Message Broker** | Azure Service Bus | AMQP Events | FIFO Queue Streaming |
+| **05** | **Streaming Consumer** | Azure Function App | OneLake ADLS Gen2 REST | Event-Driven Serverless |
+| **06** | 🥉 **Bronze Lakehouse** | Microsoft Fabric OneLake | Hierarchical JSON (`YYYY/MM/DD`) | Raw Immutable Audit Store |
+| **07** | 🥈 **Silver Layer** | Apache Spark / Delta Lake | Parquet Delta (`silver_policies`) | Cleaned, Typed, Deduplicated |
+| **08** | 🥇 **Gold Layer** | Apache Spark / Delta Lake | Aggregated Delta Parquet | Dimensional Business Metrics |
+| **09** | 📊 **Executive BI** | Power BI Direct Lake | VertiPaq In-Memory | Zero-Copy Sub-second Queries |
 
 ---
 
