@@ -1,5 +1,9 @@
 # Real-Time Underwriting Cloud Data Platform & Medallion Architecture
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue?style=for-the-badge&logo=vercel)](https://underwriting-cloud-data-platform.vercel.app)
+
+> 🌐 **Interactive Demo**: [https://underwriting-cloud-data-platform.vercel.app](https://underwriting-cloud-data-platform.vercel.app)
+
 An end-to-end, event-driven insurance underwriting data engineering platform. Built with **React**, **Node.js (Express)**, **Azure Cosmos DB**, **Azure Service Bus**, **Azure Functions**, **Microsoft Fabric OneLake**, **PySpark / Delta Lake**, and **Power BI (Direct Lake)**.
 
 ---
@@ -101,11 +105,13 @@ flowchart LR
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - Node.js (v18+ or v20+)
 - Azure Subscription (Cosmos DB NoSQL & Service Bus Basic Tier)
 - Microsoft Fabric Tenant (Workspace & Lakehouse with 60-day trial)
 
 ### 2. Environment Configuration
+
 Copy `.env.example` in both `backend` and `azure-function`:
 
 ```bash
@@ -131,6 +137,7 @@ FABRIC_LAKEHOUSE_NAME=lh_underwriting_bronze
 ### 3. Running Locally
 
 **Install dependencies:**
+
 ```bash
 cd backend && npm install
 cd ../frontend && npm install
@@ -139,16 +146,19 @@ cd ..
 ```
 
 **Run Backend API (Port 5050):**
+
 ```bash
 npm run dev:backend
 ```
 
 **Run React Underwriter Portal (Port 3000):**
+
 ```bash
 npm run dev:frontend
 ```
 
 **Run Fabric Bronze Ingestion Worker:**
+
 ```bash
 npm run worker:fabric
 ```
@@ -158,6 +168,7 @@ npm run worker:fabric
 ## 📊 Medallion PySpark Transformations
 
 ### Bronze &rarr; Silver:
+
 ```python
 # Flattens nested JSON & writes to Delta Lake
 silver_df_clean.write \
@@ -167,6 +178,7 @@ silver_df_clean.write \
 ```
 
 ### Silver &rarr; Gold:
+
 ```python
 # Aggregates by industry exposure and saves curated business table
 gold_industry_risk_exposure.write \
@@ -178,7 +190,9 @@ gold_industry_risk_exposure.write \
 ---
 
 ## 🛡️ Cost & Budget Optimization
+
 This architecture was specifically designed for **near-zero cost development**:
+
 - **Azure Cosmos DB**: Serverless mode (\$0 when idle, fractions of cents per operation).
 - **Azure Service Bus**: Basic tier (\$0.05 per million operations, \$0 base fee).
 - **Azure Functions**: Consumption plan (First 1,000,000 executions/month free).
