@@ -6,43 +6,13 @@
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#111827" stop-opacity="0.95"/>
-    </linearGradient>
-    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00d8ff"/>
-      <stop offset="100%" stop-color="#0077b6"/>
-    </linearGradient>
-    <linearGradient id="azureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0078d4"/>
-      <stop offset="100%" stop-color="#50e6ff"/>
-    </linearGradient>
-    <linearGradient id="cosmosGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2c5bf0"/>
-      <stop offset="100%" stop-color="#00d2ff"/>
-    </linearGradient>
-    <linearGradient id="fabricGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#107c41"/>
-      <stop offset="50%" stop-color="#008272"/>
-      <stop offset="100%" stop-color="#00b7c3"/>
-    </linearGradient>
-    <linearGradient id="pbiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f2c811"/>
-      <stop offset="100%" stop-color="#e67e22"/>
-    </linearGradient>
-    <linearGradient id="flowLine" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="50%" stop-color="#818cf8"/>
-      <stop offset="100%" stop-color="#34d399"/>
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#111827" stop-opacity="0.98"/>
     </linearGradient>
 
     <!-- Filters -->
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="125%">
-      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
-    <filter id="glowAzure" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
 
     <!-- Markers -->
@@ -68,10 +38,10 @@
 
   <!-- Title Header -->
   <text x="50" y="48" fill="#f8fafc" font-size="22" font-weight="700" letter-spacing="-0.5">End-to-End Insurance Underwriting Architecture</text>
-  <text x="50" y="74" fill="#94a3b8" font-size="13">Real-Time Event Streaming &bull; Azure Cloud &bull; Microsoft Fabric Medallion Architecture (Bronze / Silver / Gold) &bull; Power BI Direct Lake</text>
+  <text x="50" y="74" fill="#94a3b8" font-size="13">Real-Time Event Streaming • Azure Cloud • Microsoft Fabric Medallion Architecture (Bronze / Silver / Gold) • Power BI Direct Lake</text>
 
   <!-- ============================================================== -->
-  <!-- ZONE 1: OPERATIONAL & INGESTION TIER                          -->
+  <!-- ZONE 1: OPERATIONAL &amp; INGESTION TIER                          -->
   <!-- ============================================================== -->
   <rect x="40" y="105" width="410" height="475" rx="16" fill="#0f172a" fill-opacity="0.6" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
   <rect x="55" y="118" width="165" height="26" rx="6" fill="#1e293b"/>
@@ -87,8 +57,8 @@
     <circle cx="98" cy="207" r="3.5" fill="#00d8ff"/>
     <!-- Text -->
     <text x="130" y="193" fill="#f8fafc" font-size="15" font-weight="700">Underwriting Web Portal</text>
-    <text x="130" y="212" fill="#38bdf8" font-size="12" font-weight="600">React 19 &bull; Vite &bull; Hosted on Vercel</text>
-    <text x="130" y="232" fill="#94a3b8" font-size="11">Risk evaluation slider (1-100) &bull; Policy terms intake</text>
+    <text x="130" y="212" fill="#38bdf8" font-size="12" font-weight="600">React 19 • Vite • Hosted on Vercel</text>
+    <text x="130" y="232" fill="#94a3b8" font-size="11">Risk evaluation slider (1-100) • Policy terms intake</text>
   </g>
 
   <!-- Arrow: React -> Node API -->
@@ -103,20 +73,17 @@
     <text x="94" y="348" fill="#ffffff" font-size="11" font-weight="800">JS</text>
     <!-- Text -->
     <text x="130" y="328" fill="#f8fafc" font-size="15" font-weight="700">Policy Management API</text>
-    <text x="130" y="347" fill="#818cf8" font-size="12" font-weight="600">Node.js Express &bull; Port 5050</text>
-    <text x="130" y="367" fill="#94a3b8" font-size="11">ID generation (POL-YYYYMMDD-XXXX) &bull; Dual-dispatch</text>
+    <text x="130" y="347" fill="#818cf8" font-size="12" font-weight="600">Node.js Express • Port 5050</text>
+    <text x="130" y="367" fill="#94a3b8" font-size="11">ID generation (POL-YYYYMMDD-XXXX) • Dual-dispatch</text>
   </g>
 
   <!-- Split Branching from Node.js -->
-  <!-- Branch A: to Cosmos DB -->
   <path d="M 150 390 L 150 435" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
-  <!-- Branch B: to Service Bus -->
   <path d="M 340 390 L 340 435" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
 
   <!-- Card: Azure Cosmos DB -->
   <g filter="url(#cardShadow)">
     <rect x="60" y="445" width="175" height="115" rx="10" fill="url(#cardGrad)" stroke="#2563eb" stroke-width="1.5"/>
-    <!-- Cosmos DB Icon -->
     <circle cx="85" cy="475" r="14" fill="#0078d4" opacity="0.3"/>
     <ellipse cx="85" cy="475" rx="12" ry="5" fill="none" stroke="#0078d4" stroke-width="1.5"/>
     <ellipse cx="85" cy="475" rx="12" ry="5" fill="none" stroke="#50e6ff" stroke-width="1.5" transform="rotate(60 85 475)"/>
@@ -131,7 +98,6 @@
   <!-- Card: Azure Service Bus -->
   <g filter="url(#cardShadow)">
     <rect x="255" y="445" width="175" height="115" rx="10" fill="url(#cardGrad)" stroke="#f59e0b" stroke-width="1.5"/>
-    <!-- Service Bus Icon -->
     <rect x="272" y="465" width="22" height="16" rx="3" fill="#f59e0b"/>
     <path d="M 272 468 L 283 475 L 294 468" fill="none" stroke="#ffffff" stroke-width="1.2"/>
     <text x="303" y="475" fill="#f8fafc" font-size="12" font-weight="700">Service Bus</text>
@@ -155,13 +121,12 @@
   <!-- Card: Azure Function App -->
   <g filter="url(#cardShadow)">
     <rect x="500" y="215" width="220" height="130" rx="12" fill="url(#cardGrad)" stroke="#0d9488" stroke-width="1.5"/>
-    <!-- Azure Functions Icon -->
     <path d="M 525 240 L 540 240 L 530 260 L 545 260 L 520 285 L 527 265 L 518 265 Z" fill="#ffca00"/>
     <text x="555" y="250" fill="#f8fafc" font-size="14" font-weight="700">Azure Functions</text>
     <text x="555" y="267" fill="#2dd4bf" font-size="11" font-weight="600">Consumption Serverless</text>
-    <text x="515" y="297" fill="#94a3b8" font-size="11">&bull; Service Bus Queue Trigger</text>
-    <text x="515" y="314" fill="#94a3b8" font-size="11">&bull; Entra ID Service Principal</text>
-    <text x="515" y="331" fill="#34d399" font-size="10.5">&bull; First 1M execs FREE ($0.00)</text>
+    <text x="515" y="297" fill="#94a3b8" font-size="11">• Service Bus Queue Trigger</text>
+    <text x="515" y="314" fill="#94a3b8" font-size="11">• Entra ID Service Principal</text>
+    <text x="515" y="331" fill="#34d399" font-size="10.5">• First 1M execs FREE ($0.00)</text>
   </g>
 
   <!-- Arrow: Function -> Bronze Lakehouse -->
@@ -176,14 +141,14 @@
     <text x="552" y="442" fill="#f8fafc" font-size="13" font-weight="700">Bronze Lakehouse</text>
     <text x="552" y="457" fill="#fb923c" font-size="10.5">Raw JSON Audit Store</text>
     <text x="515" y="482" fill="#e2e8f0" font-size="10" font-family="monospace">Files/bronze/policies/</text>
-    <text x="515" y="497" fill="#38bdf8" font-size="10" font-family="monospace">&boxur; year=YYYY/</text>
-    <text x="527" y="512" fill="#38bdf8" font-size="10" font-family="monospace">&boxur; month=MM/</text>
-    <text x="539" y="527" fill="#38bdf8" font-size="10" font-family="monospace">&boxur; day=DD/POL-*.json</text>
+    <text x="515" y="497" fill="#38bdf8" font-size="10" font-family="monospace">└── year=YYYY/</text>
+    <text x="527" y="512" fill="#38bdf8" font-size="10" font-family="monospace">└── month=MM/</text>
+    <text x="539" y="527" fill="#38bdf8" font-size="10" font-family="monospace">└── day=DD/*.json</text>
     <text x="515" y="547" fill="#94a3b8" font-size="9.5">Immutable Raw Files</text>
   </g>
 
   <!-- ============================================================== -->
-  <!-- ZONE 3: MICROSOFT FABRIC MEDALLION & POWER BI                  -->
+  <!-- ZONE 3: MICROSOFT FABRIC MEDALLION &amp; POWER BI                  -->
   <!-- ============================================================== -->
   <rect x="765" y="105" width="475" height="475" rx="16" fill="#0f172a" fill-opacity="0.6" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
   <rect x="780" y="118" width="215" height="26" rx="6" fill="#1e293b"/>
@@ -201,9 +166,9 @@
     <text x="852" y="242" fill="#f8fafc" font-size="13" font-weight="700">Silver Layer</text>
     <text x="852" y="257" fill="#cbd5e1" font-size="10.5">Delta Lake Table</text>
     <text x="815" y="283" fill="#38bdf8" font-size="11" font-weight="600">silver_policies</text>
-    <text x="815" y="301" fill="#94a3b8" font-size="10">&bull; Flattened nested structs</text>
-    <text x="815" y="317" fill="#94a3b8" font-size="10">&bull; Timestamp &amp; double casts</text>
-    <text x="815" y="333" fill="#94a3b8" font-size="10">&bull; Deduplicated on policy_id</text>
+    <text x="815" y="301" fill="#94a3b8" font-size="10">• Flattened nested structs</text>
+    <text x="815" y="317" fill="#94a3b8" font-size="10">• Timestamp &amp; double casts</text>
+    <text x="815" y="333" fill="#94a3b8" font-size="10">• Deduplicated on policy_id</text>
   </g>
 
   <!-- Arrow: Silver -> Gold -->
@@ -217,9 +182,9 @@
     <text x="822" y="440" fill="#fef08a" font-size="16">🥇</text>
     <text x="852" y="432" fill="#f8fafc" font-size="13" font-weight="700">Gold Layer</text>
     <text x="852" y="447" fill="#fef08a" font-size="10.5">Aggregated Business Data</text>
-    <text x="815" y="473" fill="#fef08a" font-size="10.5" font-weight="600">&bull; gold_industry_risk_exposure</text>
+    <text x="815" y="473" fill="#fef08a" font-size="10.5" font-weight="600">• gold_industry_risk_exposure</text>
     <text x="825" y="489" fill="#94a3b8" font-size="9.5">Premium, loss limits, risk</text>
-    <text x="815" y="511" fill="#fef08a" font-size="10.5" font-weight="600">&bull; gold_underwriter_perf</text>
+    <text x="815" y="511" fill="#fef08a" font-size="10.5" font-weight="600">• gold_underwriter_perf</text>
     <text x="825" y="527" fill="#94a3b8" font-size="9.5">Approval %, book size</text>
     <text x="815" y="547" fill="#34d399" font-size="9.5">Zero-calc lag on queries</text>
   </g>
@@ -231,7 +196,6 @@
   <!-- Card: Power BI Executive Dashboard -->
   <g filter="url(#cardShadow)">
     <rect x="1045" y="215" width="180" height="345" rx="12" fill="url(#cardGrad)" stroke="#f59e0b" stroke-width="2"/>
-    <!-- Power BI Icon -->
     <rect x="1065" y="235" width="10" height="28" rx="2" fill="#f2c811"/>
     <rect x="1079" y="243" width="10" height="20" rx="2" fill="#f59e0b"/>
     <rect x="1093" y="249" width="10" height="14" rx="2" fill="#e67e22"/>
@@ -260,7 +224,7 @@
     <!-- Semantic Model label -->
     <rect x="1060" y="487" width="150" height="60" rx="6" fill="#422006" stroke="#ca8a04"/>
     <text x="1068" y="503" fill="#fef08a" font-size="9.5" font-weight="700">sm_underwriting_analytics</text>
-    <text x="1068" y="519" fill="#fef3c7" font-size="9">&bull; Sub-second VertiPaq</text>
-    <text x="1068" y="534" fill="#fef3c7" font-size="9">&bull; Zero-copy Delta access</text>
+    <text x="1068" y="519" fill="#fef3c7" font-size="9">• Sub-second VertiPaq</text>
+    <text x="1068" y="534" fill="#fef3c7" font-size="9">• Zero-copy Delta access</text>
   </g>
 </svg>

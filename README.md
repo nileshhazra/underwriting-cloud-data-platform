@@ -10,9 +10,7 @@ An end-to-end, event-driven insurance underwriting data engineering platform. Bu
 
 ## 🏗️ Architecture & Data Pipeline Flow
 
-<p align="center">
-  <img src="docs/images/architecture-diagram.svg" alt="End-to-End Insurance Underwriting Cloud Architecture" width="100%" />
-</p>
+![End-to-End Insurance Underwriting Cloud Architecture](docs/images/architecture-diagram.svg)
 
 ### 🛣️ End-to-End Data Journey
 
