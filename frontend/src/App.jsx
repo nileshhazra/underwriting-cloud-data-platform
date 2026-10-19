@@ -101,18 +101,38 @@ export default function App() {
       if (statusRes.ok) {
         const statusJson = await statusRes.json();
         setStatus(statusJson.connections);
-      }
-
-      const listRes = await fetch('/api/policies?limit=20');
-      if (listRes.ok) {
-        const listJson = await listRes.json();
-        setPolicies(listJson.data || []);
-        if (listJson.data?.length > 0 && !selectedPolicy) {
-          setSelectedPolicy(listJson.data[0]);
+        
+        const listRes = await fetch('/api/policies?limit=20');
+        if (listRes.ok) {
+          const listJson = await listRes.json();
+          setPolicies(listJson.data || []);
+          if (listJson.data?.length > 0 && !selectedPolicy) {
+            setSelectedPolicy(listJson.data[0]);
+          }
         }
+      } else {
+        throw new Error('API offline');
       }
-    } catch (err) {
-      console.warn('Backend not yet reachable on /api:', err.message);
+    } catch {
+      // Running standalone in hosted web demo mode
+      setStatus({ cosmosDb: 'DEMO_STANDALONE', serviceBus: 'SIMULATED' });
+      if (policies.length === 0) {
+        const initialDemoPolicy = {
+          id: 'POL-20261019-DEMO',
+          policyId: 'POL-20261019-DEMO',
+          submissionDate: new Date().toISOString(),
+          submissionYear: 2026,
+          submissionMonth: '10',
+          submissionDay: '19',
+          underwriter: formData.underwriter,
+          insured: formData.insured,
+          coverage: formData.coverage,
+          riskAssessment: formData.riskAssessment,
+          metadata: { source: 'underwriter-portal-demo', mode: 'web-showcase' }
+        };
+        setPolicies([initialDemoPolicy]);
+        setSelectedPolicy(initialDemoPolicy);
+      }
     }
   };
 
@@ -127,6 +147,23 @@ export default function App() {
     setLoading(true);
     setLastSubmissionResult(null);
 
+    const now = new Date();
+    const generatedId = `POL-${now.toISOString().slice(0, 10).replace(/-/g, '')}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+
+    const newPolicyDoc = {
+      id: generatedId,
+      policyId: generatedId,
+      submissionDate: now.toISOString(),
+      submissionYear: now.getUTCFullYear(),
+      submissionMonth: String(now.getUTCMonth() + 1).padStart(2, '0'),
+      submissionDay: String(now.getUTCDate()).padStart(2, '0'),
+      underwriter: formData.underwriter,
+      insured: formData.insured,
+      coverage: formData.coverage,
+      riskAssessment: formData.riskAssessment,
+      metadata: { createdAt: now.toISOString(), source: 'underwriter-portal-web' }
+    };
+
     try {
       const res = await fetch('/api/policies', {
         method: 'POST',
@@ -134,26 +171,28 @@ export default function App() {
         body: JSON.stringify(formData)
       });
 
-      const result = await res.json();
       if (res.ok) {
+        const result = await res.json();
         setLastSubmissionResult({
           type: 'success',
-          message: `Policy ${result.policyId} submitted successfully! Dispatched to Service Bus.`,
+          message: `Policy ${result.policyId} submitted successfully! Recorded in Cosmos DB and dispatched to Service Bus.`,
           data: result
         });
         setSelectedPolicy(result.data);
         fetchData();
-      } else {
-        setLastSubmissionResult({
-          type: 'error',
-          message: result.error || 'Failed to submit policy.'
-        });
+        return;
       }
-    } catch (err) {
-      setLastSubmissionResult({
-        type: 'error',
-        message: 'Could not connect to backend API server at http://localhost:5050'
-      });
+      throw new Error('API unreachable');
+    } catch {
+      // Standalone Web Demo Mode behavior
+      setTimeout(() => {
+        setPolicies(prev => [newPolicyDoc, ...prev]);
+        setSelectedPolicy(newPolicyDoc);
+        setLastSubmissionResult({
+          type: 'success',
+          message: `[Demo Mode] Policy ${generatedId} recorded! Simulating Service Bus dispatch & Fabric Bronze landing.`
+        });
+      }, 500);
     } finally {
       setLoading(false);
     }
